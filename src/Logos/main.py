@@ -17,3 +17,6 @@ class Logos:
 
     def __mul__(self)->None:
         pass
+    
+    def __normalize__(self)->None:
+        pass
