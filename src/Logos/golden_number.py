@@ -57,11 +57,3 @@ def fi_degree(n:int)->GoldenNumber:
             prev = curr
             curr = temp
     return curr
-
-
-
-
-
-    
-
-      
