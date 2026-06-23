@@ -8,24 +8,24 @@ class Normalization:
        self.a = self.normalize(a)
        self.b = self.normalize(b)
 
-    def normalize(n:GoldenNumber) -> GoldenNumber:
-        digits=[0]*20
-        digits[0]=int(n)
-        changed =True
-        while(changed):
-            for i in digits:
-                if digits[i]>=2:
-                    count=digits[i]//2
-                    digits%=2
-                    digits[n+1]+=count
-                    digits[n-2]+=count
-                    changed =True
+    
+@staticmethod
+    def normalize(digits: list) -> list:
 
-            for j in digits:
-                if digits[j] ==1 and digits[j-1]==1:
-                    digits[j+1] = digits[j]     
+        changed = True
+        while changed:
+            changed = False
 
-
-
+            for i in range(len(digits) - 2):
+                if digits[i] == 1 and digits[i+1] == 1:
+                    digits[i] = 0
+                    digits[i+1] = 0
+                    digits[i+2] += 1
+                    changed = True
             
-        
+            for i in range(len(digits)):
+                if digits[i] >= 2:
+                    digits[i] -= 2
+                    digits[i-2] += 1 
+                    changed = True
+        return digits
