@@ -1,5 +1,6 @@
 from fractions import Fraction
-from .Utils import Normalization
+from Utils import Normalization
+
 class GoldenNumber:
     def __init__(self,a:Fraction,b:Fraction)-> None:
         self.a=a
@@ -35,3 +36,28 @@ class GoldenNumber:
             return int(self.a)
         else:
             raise ValueError("Cannot convert to int")
+    
+    def is_equally(self,other:"GoldenNumber")->bool:
+        return self.a==other.a and self.b==other.b
+    
+    def less_or_equal(self,other:"GoldenNumber")->bool:
+        x=self.a-other.a
+        y=self.b-other.b
+
+        if y>=0:
+            if x>=0: return False
+            else:
+                return (x**2) >= (5 * (y**2))
+        else:
+            if x<0: return True
+            else:
+                return (x**2) <= (5 * (y**2))
+    
+    def is_less(self,other:"GoldenNumber")->bool:
+        return self.less_or_equal(other) and not self.is_equally(other)
+
+    def __eq__(self, other): 
+        return self.is_equally(other)
+    def __leeq__(self, other): 
+        return self.less_or_equal(other)
+    def __le__(self, other): return self.is_less(other)
