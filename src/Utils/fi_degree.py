@@ -27,3 +27,17 @@ class FiCalculationDegree:
                 curr = temp
         return curr
     
+    
+    def max_degree(self,val:int)-> int:
+        if val<0:
+            raise ValueError("value must be positive")
+        golden_value=GoldenNumber(Fraction(val),Fraction(0))
+        n=0
+        while self.fi_degree(n+1)<=golden_value:
+            n+=1
+        return val
+
+
+
+
+        
