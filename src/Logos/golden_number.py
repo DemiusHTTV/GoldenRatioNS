@@ -1,5 +1,5 @@
 from fractions import Fraction
-from Utils import Normalization
+
 
 class GoldenNumber:
     def __init__(self,a:Fraction,b:Fraction)-> None:
