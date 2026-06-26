@@ -31,7 +31,7 @@ class GoldenNumber:
             return True
         return False
     
-    def to_int(self)->int: 
+    def __int__(self)->int: 
         if self.is_int():
             return int(self.a)
         else:
