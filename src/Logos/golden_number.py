@@ -58,6 +58,6 @@ class GoldenNumber:
 
     def __eq__(self, other): 
         return self.is_equally(other)
-    def __leeq__(self, other): 
+    def __le__(self, other): 
         return self.less_or_equal(other)
-    def __le__(self, other): return self.is_less(other)
+    def __lt__(self, other): return self.is_less(other)
