@@ -1,5 +1,6 @@
 from Logos import GoldenNumber
 from fractions import Fraction
+from typing import Literal
 
 class FiCalculationDegree:
   
@@ -28,15 +29,19 @@ class FiCalculationDegree:
         return curr
     
     
-    def max_degree(self,val:int)-> int:
-        if val<0:
+    def calc_degree(self, val: int, param: Literal["max", "min"]) -> int:
+        if val < 0:
             raise ValueError("value must be positive")
-        golden_value=GoldenNumber(Fraction(val),Fraction(0))
-        n=0
-        while self.fi_degree(n+1)<=golden_value:
-            n+=1
-        return val
-
+        golden_value = GoldenNumber(Fraction(val), Fraction(0))
+        n = 0
+        if param == "max":
+            while self.fi_degree(n + 1) <= golden_value:
+                n += 1
+            return n
+        elif param == "min":
+            while self.fi_degree(n - 1) <= golden_value:
+                n -= 1
+            return n
 
 
 
