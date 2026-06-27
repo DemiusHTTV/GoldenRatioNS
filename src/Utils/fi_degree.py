@@ -35,7 +35,7 @@ class FiCalculationDegree:
         n=0
         while self.fi_degree(n+1)<=golden_value:
             n+=1
-        return val
+        return n
 
 
 
