@@ -16,7 +16,7 @@ class FiCalculationDegree:
         if n < 0:
             curr = self.FI_NEG
             for i in range(1, -n):
-                temp = curr + prev
+                temp = prev - curr
                 prev = curr
                 curr = temp
         else:
@@ -35,7 +35,7 @@ class FiCalculationDegree:
         n=0
         while self.fi_degree(n+1)<=golden_value:
             n+=1
-        return val
+        return n
 
 
 
