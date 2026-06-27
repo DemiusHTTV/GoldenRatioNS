@@ -55,8 +55,8 @@ class Normalization:
         zero = GoldenNumber(Fraction(0), Fraction(0))
 
         calc = FiCalculationDegree()
-        K_TOP = calc.calc_degree(int(value), "max") + 1
-        K_BOTTOM = calc.calc_degree(int(value), "min") - 1
+        K_TOP = calc.max_degree(int(value)) + 1
+        K_BOTTOM = -K_TOP
 
         for k in range(K_TOP, K_BOTTOM - 1, -1):
             if remainder == zero:
