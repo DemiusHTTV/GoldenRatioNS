@@ -1,4 +1,4 @@
-from Logos import GoldenNumber
+from goldenratio.Logos import GoldenNumber
 from fractions import Fraction
 
 class FiCalculationDegree:

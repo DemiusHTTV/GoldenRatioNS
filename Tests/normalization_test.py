@@ -1,7 +1,7 @@
 import pytest
 from fractions import Fraction
-from Utils.normalization import Normalization
-from Logos import GoldenNumber
+from goldenratio.Utils.normalization import Normalization
+from goldenratio.Logos import GoldenNumber
 
 
 def test_normalize_empty_dict():

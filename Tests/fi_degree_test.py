@@ -1,7 +1,7 @@
 import pytest
 from fractions import Fraction
-from Utils.fi_degree import FiCalculationDegree
-from Logos import GoldenNumber
+from goldenratio.Utils.fi_degree import FiCalculationDegree
+from goldenratio.Logos import GoldenNumber
 
 calc=FiCalculationDegree()
 

@@ -1,7 +1,7 @@
 from fractions import Fraction
-from Logos import GoldenNumber
-from Utils.fi_degree import FiCalculationDegree
-from Utils.fi_base import PhiBase
+from goldenratio.Logos import GoldenNumber
+from goldenratio.Utils.fi_degree import FiCalculationDegree
+from goldenratio.Utils.fi_base import PhiBase
 
 
 class Normalization:

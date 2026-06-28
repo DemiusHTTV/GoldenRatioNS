@@ -1,6 +1,6 @@
 import pytest
 from fractions import Fraction
-from Logos.golden_number import GoldenNumber
+from goldenratio.Logos.golden_number import GoldenNumber
 
 
 def test_str():

@@ -1,6 +1,6 @@
 from fractions import Fraction
-from Utils.fi_base import PhiBase
-from Logos import GoldenNumber
+from goldenratio.Utils.fi_base import PhiBase
+from goldenratio.Logos import GoldenNumber
 
 
 def test_str_eleven():

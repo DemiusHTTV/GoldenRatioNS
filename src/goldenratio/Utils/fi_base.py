@@ -1,6 +1,6 @@
 from fractions import Fraction
-from Logos import GoldenNumber
-from Utils.fi_degree import FiCalculationDegree
+from goldenratio.Logos import GoldenNumber
+from goldenratio.Utils.fi_degree import FiCalculationDegree
 
 
 class PhiBase:

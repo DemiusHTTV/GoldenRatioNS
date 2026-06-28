@@ -1,1 +1,1 @@
-from Logos.golden_number import GoldenNumber
+from goldenratio.Logos.golden_number import GoldenNumber

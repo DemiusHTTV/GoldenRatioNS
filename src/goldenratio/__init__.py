@@ -1,10 +1,10 @@
-from Logos.golden_number import GoldenNumber
+from goldenratio.Logos.golden_number import GoldenNumber
   
  
 def normalize(value: GoldenNumber):
-     from Utils.normalization import Normalization 
+     from goldenratio.Utils.normalization import Normalization 
      return Normalization(value)
 
 def fi_degree(n: int) -> GoldenNumber:
-    from Utils.fi_degree import FiCalculationDegree
+    from goldenratio.Utils.fi_degree import FiCalculationDegree
     return FiCalculationDegree().fi_degree(n)
