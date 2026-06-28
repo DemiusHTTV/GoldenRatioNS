@@ -67,3 +67,12 @@ class Normalization:
                 remainder = remainder - phi_k
 
         return digits
+    
+
+    def __int__(self):
+        calc = FiCalculationDegree()
+        result = GoldenNumber(Fraction(0), Fraction(0))
+        for k, v in self.digits.items():
+            phi_k = calc.fi_degree(k)
+            result = result + phi_k
+        return int(result)
