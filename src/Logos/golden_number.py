@@ -1,6 +1,5 @@
 from fractions import Fraction
 
-
 class GoldenNumber:
     def __init__(self,a:Fraction,b:Fraction)-> None:
         self.a=a
@@ -45,7 +44,7 @@ class GoldenNumber:
         y=self.b-other.b
 
         if y>=0:
-            if x>=0: return False
+            if x>0: return False
             else:
                 return (x**2) >= (5 * (y**2))
         else:
@@ -60,4 +59,5 @@ class GoldenNumber:
         return self.is_equally(other)
     def __le__(self, other): 
         return self.less_or_equal(other)
-    def __lt__(self, other): return self.is_less(other)
+    def __lt__(self, other): 
+        return self.is_less(other)
