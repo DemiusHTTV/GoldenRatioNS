@@ -40,6 +40,8 @@ class GoldenNumber:
         return self.a==other.a and self.b==other.b
     
     def less_or_equal(self,other:"GoldenNumber")->bool:
+        if self.is_equally(other):
+            return True
         x=self.a-other.a
         y=self.b-other.b
 

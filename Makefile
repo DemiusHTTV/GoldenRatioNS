@@ -4,5 +4,16 @@ help:
 
 clean:
 	sh $(SCRIPTS)/clean.sh
+
+test:
+	sh $(SCRIPTS)/test.sh
+
+install:
+	sh $(SCRIPTS)/install.sh
 	
-PHONY: help clean
+build:
+	sh $(SCRIPTS)/build.sh
+
+publish:
+	uv publish
+PHONY: help clean test install typecheck build publish
