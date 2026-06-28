@@ -1,9 +1,9 @@
 from fractions import Fraction
 
 class GoldenNumber:
-    def __init__(self,a:Fraction,b:Fraction)-> None:
-        self.a=a
-        self.b=b
+    def __init__(self,a:int,b:int)-> None:
+        self.a=Fraction(a)
+        self.b=Fraction(b)
 
     def __str__(self) -> str:
         return f"{self.a} + {self.b}·√5"
@@ -40,6 +40,8 @@ class GoldenNumber:
         return self.a==other.a and self.b==other.b
     
     def less_or_equal(self,other:"GoldenNumber")->bool:
+        if self.is_equally(other):
+            return True
         x=self.a-other.a
         y=self.b-other.b
 
@@ -57,7 +59,12 @@ class GoldenNumber:
 
     def __eq__(self, other): 
         return self.is_equally(other)
+    
     def __le__(self, other): 
         return self.less_or_equal(other)
-    def __lt__(self, other): 
-        return self.is_less(other)
+    
+    def __lt__(self, other): return self.is_less(other)
+
+
+   
+
