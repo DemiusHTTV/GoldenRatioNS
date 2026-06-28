@@ -1,13 +1,25 @@
 from fractions import Fraction
 from Logos import GoldenNumber
 from Utils.fi_degree import FiCalculationDegree
+from Utils.fi_base import PhiBase
 
 
 class Normalization:
     """Нормализация GoldenNumber в базе phi."""
 
     def __init__(self, result: GoldenNumber) -> None:
-          self.digits: dict[int, int] = self.normalize(self.to_digits(result)) 
+        digits = PhiBase.to_digits(result)
+        self.phi = PhiBase(self.normalize(digits))
+
+    def __str__(self) -> str:
+        return str(self.phi)
+
+    def __int__(self) -> int:
+        calc = FiCalculationDegree()
+        result = GoldenNumber(Fraction(0), Fraction(0))
+        for k in self.phi.digits:
+            result = result + calc.fi_degree(k)
+        return int(result)
 
     @staticmethod
     def normalize(digits: dict) -> dict:
@@ -46,33 +58,3 @@ class Normalization:
                     break
 
         return {k: v for k, v in digits.items() if v != 0}
-
-    @staticmethod
-    def to_digits(value: GoldenNumber) -> dict:
-        """Жадный перевод GoldenNumber в цифры базы phi."""
-        digits = {}
-        remainder = value
-        zero = GoldenNumber(Fraction(0), Fraction(0))
-
-        calc = FiCalculationDegree()
-        K_TOP = calc.max_degree(int(value)) + 1
-        K_BOTTOM = -K_TOP
-
-        for k in range(K_TOP, K_BOTTOM - 1, -1):
-            if remainder == zero:
-                break
-            phi_k = calc.fi_degree(k)
-            if not phi_k.less_or_equal(zero) and not remainder.is_less(phi_k):
-                digits[k] = 1
-                remainder = remainder - phi_k
-
-        return digits
-    
-
-    def __int__(self):
-        calc = FiCalculationDegree()
-        result = GoldenNumber(Fraction(0), Fraction(0))
-        for k, v in self.digits.items():
-            phi_k = calc.fi_degree(k)
-            result = result + phi_k
-        return int(result)
