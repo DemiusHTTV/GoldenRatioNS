@@ -32,3 +32,45 @@ def test_to_digits_1984():
     n = GoldenNumber(1984, 0)
     result = PhiBase.to_digits(n)
     assert str(PhiBase(result)) == "1010001001001000.1001001000100001"
+
+def test_add_small():
+    a = PhiBase({0: 1}) 
+    b = PhiBase({0: 1})  
+    res = a + b          
+    assert res.digits == {2: 1} 
+
+
+def test_add_different():
+    a = PhiBase({2: 1})  
+    b = PhiBase({0: 1})  
+    res = a + b
+    assert res.digits == {3: 1}  
+
+
+def test_sub_small():
+    a = PhiBase({2: 1}) 
+    b = PhiBase({0: 1})  
+    res = a - b          
+    assert res.digits == {1: 1}
+
+
+def test_sub_equal():
+    a = PhiBase({2: 1})
+    b = PhiBase({2: 1})
+    res = a - b
+    assert res.digits == {}
+
+
+def test_mul_small():
+    a = PhiBase({1: 1})  
+    b = PhiBase({1: 1})  
+    res = a * b          
+    assert res.digits == {2: 1}
+
+
+def test_mul_different():
+    a = PhiBase({2: 1})  
+    b = PhiBase({1: 1})  
+    res = a * b          
+    assert res.digits == {3: 1}
+    
