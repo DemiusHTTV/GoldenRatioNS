@@ -1,7 +1,8 @@
 from fractions import Fraction
 from goldenratio.Logos import GoldenNumber
 from goldenratio.Utils.fi_degree import FiCalculationDegree
-
+from goldenratio.Utils.fi_base import PhiBase
+from goldenratio.Utils.normalization import Normalization
 
 class PhiBase:
     """Представление числа в фи-системе счисления."""
@@ -42,5 +43,37 @@ class PhiBase:
                 remainder = remainder - phi_k
 
         return digits
+    
+    @staticmethod
+    def add(a:PhiBase,b:PhiBase)->PhiBase:
+        merged:dict[int,int]=dict(a.digits)
+        for k,v in b.digits.items():
+            if k in merged:
+                merged[k]=merged[k]+v
+            else:
+                merged[k]=v
+        return PhiBase(Normalization.normalize(merged))
+    
+    @staticmethod
+    def sub(a:PhiBase,b:PhiBase)->PhiBase:
+        merged:dict[int,int]=dict(a.digits)
+        for k,v in b.digits.items():
+            if k in merged:
+                merged[k]=merged[k]-v
+            else:
+                merged[k]=v
+        return PhiBase(Normalization.normalize(merged))
+    
+    @staticmethod
+    def mul(a:PhiBase,b:PhiBase)->PhiBase:
+        merged:dict[int,int]={}
+        for deg_a,coef_a in a.digits:
+            for deg_b,coef_b in b.digits:
+                new_deg=deg_a+deg_b
+                if new_deg in merged:
+                    merged[new_deg]=merged[new_deg]+coef_a*coef_b
+                else:
+                    merged[new_deg]=coef_a*coef_b
+        return PhiBase(Normalization.normalize(merged))
     
 
