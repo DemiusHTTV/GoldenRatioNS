@@ -37,14 +37,14 @@ def test_add_small():
     a = PhiBase({0: 1}) 
     b = PhiBase({0: 1})  
     res = a + b          
-    assert res.digits == {2: 1} 
+    assert res.digits == {-2: 1, 1: 1} 
 
 
 def test_add_different():
     a = PhiBase({2: 1})  
     b = PhiBase({0: 1})  
     res = a + b
-    assert res.digits == {3: 1}  
+    assert res.digits == {2: 1, 0: 1} 
 
 
 def test_sub_small():
