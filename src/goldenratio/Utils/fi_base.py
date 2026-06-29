@@ -16,8 +16,11 @@ class PhiBase:
         min_k = min(self.digits.keys())
         bits = []
         for k in range(max_k, min_k - 1, -1):
+            if k == -1:
+                bits.append(".")
             bits.append(str(self.digits.get(k, 0)))
         return "".join(bits)
+
 
     @staticmethod
     def to_digits(value: GoldenNumber) -> dict:
