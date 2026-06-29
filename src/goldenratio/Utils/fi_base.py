@@ -1,7 +1,6 @@
 from fractions import Fraction
 from goldenratio.Logos import GoldenNumber
 from goldenratio.Utils.fi_degree import FiCalculationDegree
-from goldenratio.Utils.fi_base import PhiBase
 from goldenratio.Utils.normalization import Normalization
 
 class PhiBase:
@@ -44,36 +43,24 @@ class PhiBase:
 
         return digits
     
-    @staticmethod
-    def add(a:PhiBase,b:PhiBase)->PhiBase:
-        merged:dict[int,int]=dict(a.digits)
-        for k,v in b.digits.items():
-            if k in merged:
-                merged[k]=merged[k]+v
-            else:
-                merged[k]=v
+    def __add__(self, other: "PhiBase") -> "PhiBase":
+        merged: dict[int, int] = dict(self.digits)
+        for k, v in other.digits.items():
+            merged[k] = merged.get(k, 0) + v
         return PhiBase(Normalization.normalize(merged))
-    
-    @staticmethod
-    def sub(a:PhiBase,b:PhiBase)->PhiBase:
-        merged:dict[int,int]=dict(a.digits)
-        for k,v in b.digits.items():
-            if k in merged:
-                merged[k]=merged[k]-v
-            else:
-                merged[k]=v
+
+    def __sub__(self, other: "PhiBase") -> "PhiBase":
+        merged: dict[int, int] = dict(self.digits)
+        for k, v in other.digits.items():
+            merged[k] = merged.get(k, 0) - v
         return PhiBase(Normalization.normalize(merged))
-    
-    @staticmethod
-    def mul(a:PhiBase,b:PhiBase)->PhiBase:
-        merged:dict[int,int]={}
-        for deg_a,coef_a in a.digits:
-            for deg_b,coef_b in b.digits:
-                new_deg=deg_a+deg_b
-                if new_deg in merged:
-                    merged[new_deg]=merged[new_deg]+coef_a*coef_b
-                else:
-                    merged[new_deg]=coef_a*coef_b
+
+    def __mul__(self, other: "PhiBase") -> "PhiBase":
+        merged: dict[int, int] = {}
+        for deg_a, coef_a in self.digits.items():
+            for deg_b, coef_b in other.digits.items():
+                new_deg = deg_a + deg_b
+                merged[new_deg] = merged.get(new_deg, 0) + coef_a * coef_b
         return PhiBase(Normalization.normalize(merged))
     
 
