@@ -49,23 +49,28 @@ print(gr.fi_degree(5)) # φ⁵ = 5/2 + 5/2·√5
 ```python
 import goldenratio as gr
 
-a = PhiBase.from_golden_number(GoldenNumber(Fraction(10), Fraction(0)))
-b = PhiBase.from_golden_number(GoldenNumber(Fraction(3), Fraction(0)))
+a = gr.GoldenNumber(11,0)
+b = gr.GoldenNumber(15,0)
 
-print(a)            # фи-запись числа 10
-print(b)            # фи-запись числа 3
+phi_a = gr.translate_to_fi(a)
+phi_b = gr.translate_to_fi(b)
 
-result_add = a + b
-result_sub = a - b
-result_mul = a * b
+result = phi_a + phi_b
+print(int(result))
+print(result)
+```
+
+---
 
 ## API
 
 | Функция | Описание | Пример |
 |---|---|---|
 | `GoldenNumber(a, b)` | Число вида `a + b·√5` | `GoldenNumber(3, 0)` |
-| `normalize(value)` | Перевод в фи-запись | `normalize(a)` |
+| `normalize(value)` | Нормализация | `normalize(a)` |
 | `fi_degree(n)` | Вычислить φⁿ | `fi_degree(5)` |
+| `translate_to_fi(a)`|Перевод в систему φ|`translate_to_fi(GoldenNumber(3, 0))`|
+---
 
 ### Арифметика
 
