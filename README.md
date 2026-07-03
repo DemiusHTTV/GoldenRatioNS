@@ -98,7 +98,7 @@ print(result)
   <tr>
     <td align="center">
       <a href="https://github.com/Yana5193">
-        <img src="https://github.com/Yana5193.png" width="110" alt="Яна" style="border-radius:50%" />
+        <img src="https://wsrv.nl/?url=github.com/Yana5193.png&w=200&h=200&fit=cover&mask=circle" width="110" alt="Яна" />
         <br />
         <sub><b>Яна</b></sub>
       </a>
@@ -107,7 +107,7 @@ print(result)
     </td>
     <td align="center">
       <a href="https://github.com/DemiusHTTV">
-        <img src="https://github.com/DemiusHTTV.png" width="110" alt="Дима" style="border-radius:50%" />
+        <img src="https://wsrv.nl/?url=github.com/DemiusHTTV.png&w=200&h=200&fit=cover&mask=circle" width="110" alt="Дима" />
         <br />
         <sub><b>Дима</b></sub>
       </a>
