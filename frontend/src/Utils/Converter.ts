@@ -87,19 +87,26 @@ from goldenratio.Logos import GoldenNumber
 a = GoldenNumber(int(left_value), 0)
 b = GoldenNumber(int(right_value), 0)
 
-phi_a = gr.translate_to_fi(a)
-phi_b = gr.translate_to_fi(b)
-
+# Считаем на уровне GoldenNumber (a + b*sqrt5 через Fraction) — эта арифметика
+# точная. PhiBase.__add__/__sub__/__mul__ в goldenratio 0.1.4 складывают/вычитают
+# цифры фи-базы напрямую и гоняют через Normalization.normalize(), у которой
+# неполный набор правил свёртки — на некоторых входах (например 5-1) остаётся
+# незакрытая отрицательная цифра и int() считает результат неверно. Поэтому
+# арифметику делаем на GoldenNumber, а в фи-запись переводим уже готовый
+# результат через translate_to_fi (тот же путь, что и при обычном переводе
+# числа, он проверен и работает корректно).
 if op == "+":
-    result = phi_a + phi_b
+    result = a + b
 elif op == "-":
-    result = phi_a - phi_b
+    result = a - b
 elif op == "*":
-    result = phi_a * phi_b
+    result = a * b
 else:
     raise ValueError("Unknown operator: " + op)
 
-{"phi": str(result), "decimal": str(int(result))}
+phi_result = gr.translate_to_fi(result)
+
+{"phi": str(phi_result), "decimal": str(int(result))}
 `);
     const hasToJs = (value: unknown): value is { toJs: () => Iterable<[string, unknown]> } =>
         typeof value === "object" && value !== null && "toJs" in value;

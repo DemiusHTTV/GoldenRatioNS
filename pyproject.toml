@@ -1,14 +1,17 @@
 [project]
 name = "golden-ration-ns"
-version = "0.1.4"
+version = "0.1.5"
 description = "Add your description here"
 readme = "README.md"
 authors = [
     { name = "Yana", email = "anaermakova948@gmail.com" },
     {name ="Dima",email = "babygreenyoda@yandex.ru"}
 ]
-requires-python = ">=3.13"
-dependencies = [
+requires-python = ">=3.10"
+dependencies = []
+
+[dependency-groups]
+dev = [
     "mypy>=2.1.0",
     "pytest>=9.1.1",
 ]
