@@ -3,6 +3,7 @@ export type Operator = "+" | "-" | "*";
 
 interface PyodideInterface{
     runPythonAsync:(code:string)=>Promise<unknown>
+    loadPackage:(names:string|string[])=>Promise<unknown>
     globals:{
         set:(name:string,value:unknown)=>void;
     };
@@ -21,9 +22,14 @@ function getPyodide(): Promise<PyodideInterface> {
     pyodidePromise = window
       .loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/" })
       .then(async (pyodide) => {
+        await pyodide.loadPackage("micropip");
         await pyodide.runPythonAsync(`
 import micropip
-await micropip.install("golden-ration-ns")
+# deps=False: пакет golden-ration-ns на PyPI (0.1.4) по ошибке объявляет
+# mypy/pytest как runtime-зависимости, хотя код использует только
+# стандартную библиотеку (fractions). Их транзитивные зависимости не
+# собираются под Pyodide/WASM, поэтому явно пропускаем резолвинг зависимостей.
+await micropip.install("golden-ration-ns==0.1.4", deps=False)
 `);
         return pyodide;
       });
@@ -95,8 +101,11 @@ else:
 
 {"phi": str(result), "decimal": str(int(result))}
 `);
-    const asObject = (result as any).toJs
-        ? Object.fromEntries((result as any).toJs())
+    const hasToJs = (value: unknown): value is { toJs: () => Iterable<[string, unknown]> } =>
+        typeof value === "object" && value !== null && "toJs" in value;
+
+    const asObject = hasToJs(result)
+        ? Object.fromEntries(result.toJs())
         : (result as { phi: string; decimal: string });
  
      return { phi: String(asObject.phi), decimal: String(asObject.decimal) };
